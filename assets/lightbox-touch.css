@@ -1,0 +1,73 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+body {
+	background-color: #000;
+	margin: 0;
+	overflow: hidden;
+}
+
+.wrapper {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.header {
+	color: #666;
+	font: 24px/33px 'Georgia';
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+}
+.header span {
+	color: #fff;
+}
+
+
+.container {
+	height: 100%;
+	white-space: nowrap;
+}
+
+
+.block {
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+
+.loading {
+	background: url('loading.gif') center center no-repeat;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	transition: opacity 0.2s;
+}
+
+.buffer {
+	height: 1px;
+	left: 0;
+	width: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+
+.preview {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+}

@@ -1,0 +1,137 @@
+.lightbox-overlay .hidden{
+	cursor: default!important;
+	opacity: 0!important;
+}
+.lightbox-overlay {
+	background-color: rgba(0,0,0,0.9);
+	display: none;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2000;
+}
+
+
+.lightbox-overlay .prev,
+.lightbox-overlay .next {
+	cursor: pointer;
+	height: 100%;
+	left: 0;
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	transition: opacity 0.2s;
+	width: 50px;
+	z-index: 3;
+}
+.lightbox-overlay .next {
+	width: 100%;
+	z-index: 2;
+}
+.lightbox-overlay .prev:hover,
+.lightbox-overlay .next:hover {
+	opacity: 1;
+}
+.lightbox-overlay .prev.disabled,
+.lightbox-overlay .next.disabled {
+	cursor: default;
+	opacity: 0;
+}
+.lightbox-overlay .prev > span,
+.lightbox-overlay .next > span {
+	color: #fff;
+	display: block;
+	font-size: 50px;
+	height: 50px;
+	left: 5px;
+	line-height: 50px;
+	margin-top: -25px;
+	position: absolute;
+	text-align: center;
+	text-shadow: 1px 1px 3px #000;
+	top: 50%;
+	width: 50px;
+}
+.lightbox-overlay .next > span {
+	left: auto;
+	right: 5px;
+}
+
+
+.lightbox-overlay .close {
+	color: #fff;
+	cursor: pointer;
+	font-size: 50px;
+	font-weight: normal;
+	height: 33px;
+	line-height: 33px;
+	opacity: 0.5;
+	position: absolute;
+	right: 15px;
+	text-align: center;
+	text-shadow: 1px 1px 3px #000;
+	top: 15px;
+	transition: opacity 0.2s;
+	width: 33px;
+	z-index: 4;
+}
+.lightbox-overlay .close:hover {
+	color: #fff;
+	float: none;
+	opacity: 1;
+}
+
+
+.lightbox-overlay .block {
+	background-color: #000;
+	height: 100px;
+	left: 50%;
+	margin: -50px 0 0 -50px;
+	position: absolute;
+	top: 50%;
+	width: 100px;
+	z-index: 1;
+}
+.lightbox-overlay .loading {
+	background: url('loading.gif') center center no-repeat;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+}
+.lightbox-overlay .buffer {
+	height: 1px;
+	left: 0;
+	width: 1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+}
+.lightbox-overlay .preview {
+	bottom: 0;
+	display: block;
+	left: 1px;
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	top: 1px;
+	z-index: 1;
+}
+
+
+.lightbox-overlay .header {
+	color: #666;
+	font: 24px/33px 'Georgia';
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+}
+.lightbox-overlay .header span {
+	color: #fff;
+}
