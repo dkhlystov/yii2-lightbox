@@ -2,6 +2,7 @@
 
 namespace dkhlystov\widgets;
 
+use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -36,7 +37,7 @@ class Lightbox extends Widget {
 		Html::addCssClass($this->options, 'lightbox');
 
 		//open tag
-		$this->options['data-url'] = Url::toRoute(['lightbox']);
+		$this->options['data-url'] = Url::toRoute([$this->getTouchRoute()]);
 		echo Html::beginTag('div', $this->options);
 	}
 
@@ -49,6 +50,35 @@ class Lightbox extends Widget {
 
 		//close tag
 		echo Html::endTag('div');
+	}
+
+	/**
+	 * Get url for mobile devices
+	 * @return string
+	 */
+	private function getTouchRoute()
+	{
+		$result = '';
+
+		foreach (Yii::$app->getModules(false) as $name => $module) {
+			if (is_string($module)) {
+				$className = $module;
+			} elseif (is_array($module)) {
+				$className = $module['class'];
+			} else {
+				$className = $module::className();
+			}
+
+			if ($className == 'dkhlystov\lightbox\Module') {
+				$result = '/' . $name . '/touch/image';
+				break;
+			}
+		}
+
+		if (empty($result))
+			throw new Exception('Module "Lightbox" not found.');
+
+		return $result;
 	}
 
 }

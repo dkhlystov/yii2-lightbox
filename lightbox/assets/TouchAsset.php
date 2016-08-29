@@ -13,7 +13,7 @@ class TouchAsset extends AssetBundle {
 	];
 
 	public $js = [
-		'lightbox-touch.js',
+		'lightbox-touch' . (YII_DEBUG ? '' : '.min') . '.js',
 	];
 
 	public $depends = [

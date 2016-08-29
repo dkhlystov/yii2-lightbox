@@ -1,113 +1,116 @@
 $(function() {
 	var $body = $('body'), $header = $('.header span'), $container = $('.container'), $blocks = $container.find('.block');
 
-	//установка размеров блоков
 	function setBlockSize() {
-		//размеры страницы
+		//page size
 		var bw = $body.width(), bh = $body.height();
-		//размеры блоков
+
 		$blocks.each(function() {
-			//размер блока
+			//block size
 			$(this).css({
 				'width': bw,
 				'height': bh
 			});
 		});
-		//размер контейнера
+
+		//container size
 		$container.css({
 			'height': bh,
-			'margin-left': -bw*$container.data('touch'),
+			'margin-left': -bw * $container.data('touch'),
 			'width': $blocks.length * bw
 		});
-	}
+	};
 
-	//установка размеров изображения
 	function setImageSize($b) {
 		var load = $b != undefined
 		if (!load) $b = $blocks;
-		//размеры страницы
-		var bw = $body.width(), bh = $body.height(), ba = bw/bh;
+		//page size
+		var bw = $body.width(), bh = $body.height(), ba = bw / bh;
 		$b.each(function() {
-			//размеры изображения
+			//image size
 			var $this = $(this), $loading = $this.find('.loading'), $buffer = $this.find('.buffer img'), $image = $this.find('.preview');
 			if ($loading.css('opacity') == 0 || load) {
-				var w = $buffer.width(), h = $buffer.height(), a = w/h;
+				var w = $buffer.width(), h = $buffer.height(), a = w / h;
 				if (a > ba) {
 					w = bw;
-					h = w/a;
+					h = w / a;
 				} else {
 					h = bh;
-					w = h*a;
-				}
+					w = h * a;
+				};
 				$image.css({
 					'height': h,
-					'margin-left': -w/2,
-					'margin-top': -h/2,
+					'margin-left': -w / 2,
+					'margin-top': -h / 2,
 					'width': w
 				}).attr('src', $buffer.attr('src')).animate({'opacity': 1}, 200);
 				$loading.css('opacity', 0);
-			}
+			};
 		});
-	}
+	};
 
-	//изображения
 	function setBlockSrc() {
 		$blocks.each(function() {
 			var $this = $(this);
 			$this.find('.buffer img').attr('src', $this.data('src'));
 		});
-	}
+	};
 
-	//загружен буфер
 	function bufferLoad() {
 		setImageSize($(this).closest('.block'));
-	}
+	};
 
-	//изменение размера экрана
 	function windowResize() {
 		setBlockSize();
 		setImageSize();
-	}
+	};
 
-	//тач
+	//touch
 	var timestamp = null, lastX = null, speedX = null;
 	function touchstart(event) {
-		//координата
+		//coord
 		var x = event.pageX;
-		if (x == undefined) x = event.originalEvent.touches[0].pageX;
-		//заканчиваем анимацию
+		if (x == undefined)
+			x = event.originalEvent.touches[0].pageX;
+		//stop animation
 		$(':animated').stop(true, true);
-		//параметры перетаскивания
+		//drag params
 		$container.data({
 			'x': x,
 			'left': parseInt($container.css('margin-left'))
 		});
-		//обработчик
+		//handler
 		$body.bind('touchmove', touchmove);
-	}
+	};
 	function touchend(event) {
-		//обработчик
+		//handler
 		$body.unbind('touchmove', touchmove);
-		//определяем индекс
-		var bw = $body.width(), touch = Math.round(-parseInt($container.data('left'))/bw);
-		if (speedX < -0.05) touch++;
-		else if (speedX > 0.05) touch--;
-		if (touch > $blocks.length - 1) touch = $blocks.length - 1;
+		//determine index
+		var bw = $body.width(),
+			touch = Math.round(-parseInt($container.data('left')) / bw);
+		if (speedX < -0.05) {
+			touch++;
+		} else if (speedX > 0.05) {
+			touch--;
+		};
+		if (touch > $blocks.length - 1)
+			touch = $blocks.length - 1;
 		if (touch < 0) touch = 0;
-		//устанавливаем смещение
-		$container.data('touch', touch).animate({'margin-left': -touch*bw}, 200);
-		//заголовок
-		$header.text(touch+1);
-	}
+		//offset
+		$container.data('touch', touch).animate({'margin-left': -touch * bw}, 200);
+		//title
+		$header.text(touch + 1);
+	};
 	function touchmove(event) {
-		//координата
+		//coord
 		var x = event.pageX;
-		if (x == undefined) x = event.originalEvent.touches[0].pageX;
-		//изменение
-		var dx = x-$container.data('x');
-		//корректируем положение
-		$container.css('margin-left', $container.data('left')+dx);
-		//скорость
+		if (x == undefined)
+			x = event.originalEvent.touches[0].pageX;
+		//shift
+		var dx = x - $container.data('x');
+		//place correction
+		$container.css('margin-left', $container.data('left') + dx);
+		//speed
 		if (timestamp === null) {
 			timestamp = Date.now();
 			lastX = x;
@@ -116,23 +119,23 @@ $(function() {
 			speedX = dx / dt;
 			timestamp = now;
 			lastX = x;
-		}
-	}
+		};
+	};
 
-	//инициализация
+	//initialization
 	function init() {
-		//обработчики
-		$('.buffer img').bind('load', bufferLoad); //загрузка изображения
-		$(window).bind('orientationchange, resize', windowResize); //изменение размера
-		$body.bind('touchstart', touchstart); //тач
-		$body.bind('touchend', touchend); //тач
-		//размеры блоков
+		//handlers
+		$('.buffer img').bind('load', bufferLoad); //image loading
+		$(window).bind('orientationchange, resize', windowResize); //resize
+		$body.bind('touchstart', touchstart); //touch
+		$body.bind('touchend', touchend); //touch
+		//blocks size
 		setBlockSize();
-		//изображения
+		//images
 		setBlockSrc();
-	}
+	};
 
-	//инициализация блоков
+	//block initialization
 	init();
 
 });
