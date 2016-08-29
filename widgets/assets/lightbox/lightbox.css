@@ -1,6 +1,6 @@
-.lightbox-overlay .hidden{
-	cursor: default!important;
-	opacity: 0!important;
+.lightbox-overlay .hidden {
+	cursor: default !important;
+	opacity: 0 !important;
 }
 .lightbox-overlay {
 	background-color: rgba(0,0,0,0.9);
@@ -84,7 +84,7 @@
 }
 
 
-.lightbox-overlay .block {
+.lightbox-block {
 	background-color: #000;
 	height: 100px;
 	left: 50%;
@@ -123,7 +123,7 @@
 }
 
 
-.lightbox-overlay .header {
+.lightbox-header {
 	color: #666;
 	font: 24px/33px 'Georgia';
 	position: absolute;
@@ -132,6 +132,6 @@
 	width: 100%;
 	z-index: 2;
 }
-.lightbox-overlay .header span {
+.lightbox-header span {
 	color: #fff;
 }
