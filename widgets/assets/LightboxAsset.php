@@ -13,7 +13,7 @@ class LightboxAsset extends AssetBundle {
 	];
 
 	public $js = [
-		'lightbox.js',
+		'lightbox' . (YII_DEBUG ? '' : '.min') . '.js',
 	];
 
 	public $depends = [
