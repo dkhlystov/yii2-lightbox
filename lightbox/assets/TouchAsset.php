@@ -1,12 +1,12 @@
 <?php
 
-namespace dkhlystov\lightbox;
+namespace dkhlystov\lightbox\assets;
 
 use yii\web\AssetBundle;
 
 class TouchAsset extends AssetBundle {
 
-	public $sourcePath = '@dkhlystov/lightbox/assets';
+	public $sourcePath = __DIR__ . '/touch';
 
 	public $css = [
 		'lightbox-touch.css',

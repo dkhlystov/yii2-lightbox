@@ -1,12 +1,12 @@
 <?php
 
-namespace dkhlystov\lightbox;
+namespace dkhlystov\widgets\assets;
 
 use yii\web\AssetBundle;
 
-class Asset extends AssetBundle {
+class LightboxAsset extends AssetBundle {
 
-	public $sourcePath = '@dkhlystov/lightbox/assets';
+	public $sourcePath = __DIR__ . '/lightbox';
 
 	public $css = [
 		'lightbox.css',

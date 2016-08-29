@@ -1,39 +1,53 @@
 <?php
 
-namespace dkhlystov\lightbox;
+namespace dkhlystov\widgets;
 
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use dkhlystov\lightbox\Asset;
 
+use dkhlystov\widgets\assets\LightboxAsset;
+
+/**
+ * Lightbox widget
+ */
 class Lightbox extends Widget {
 
-	//контент для виджета
+	/**
+	 * @var string Widget content
+	 */
 	public $content;
 
-	//параметры контейнера
+	/**
+	 * @var array Widget container options
+	 */
 	public $options = [];
 
+	/**
+	 * @inheritdoc
+	 */
 	public function init() {
 		parent::init();
 
-		//активы
-		Asset::register($this->view);
+		//assets
+		LightboxAsset::register($this->view);
 
-		//класс
+		//css class
 		Html::addCssClass($this->options, 'lightbox');
 
-		//открываем
+		//open tag
 		$this->options['data-url'] = Url::toRoute(['lightbox']);
 		echo Html::beginTag('div', $this->options);
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function run() {
-		//контент
+		//content
 		if ($this->content !== null) echo $this->content;
 
-		//закрываем
+		//close tag
 		echo Html::endTag('div');
 	}
 

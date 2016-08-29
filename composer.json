@@ -1,6 +1,6 @@
 {
 	"name": "dkhlystov/yii2-lightbox",
-	"description": "Lightbox extension widget for Yii PHP Framework Version 2",
+	"description": "Lightbox extension widget for Yii 2 framework",
 	"type": "yii2-extension",
 	"keywords": ["yii2","lightbox","widget"],
 	"license": "BSD-3-Clause",
@@ -15,7 +15,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"dkhlystov\\lightbox\\": ""
+			"dkhlystov\\": ""
 		}
 	}
 }
