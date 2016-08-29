@@ -130,6 +130,9 @@ $(function() {
 		if ($overlay.find('.prev').is('.disabled'))
 			return false;
 
+		if ($overlay.find('.loading').is(':visible'))
+			return false;
+
 		var $block = $overlay.find('.lightbox-block'),
 			$el = $block.data('el'),
 			$links = $el.closest('.lightbox').find('a:has(img)'),
@@ -142,6 +145,9 @@ $(function() {
 	function nextClick() {
 		var $overlay = $('.lightbox-overlay');
 		if ($overlay.find('.next').is('.disabled'))
+			return false;
+
+		if ($overlay.find('.loading').is(':visible'))
 			return false;
 
 		var $block = $overlay.find('.lightbox-block'),
