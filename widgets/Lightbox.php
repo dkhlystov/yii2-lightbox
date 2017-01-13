@@ -76,7 +76,7 @@ class Lightbox extends Widget {
 		}
 
 		if (empty($result))
-			throw new Exception('Module "Lightbox" not found.');
+			throw new \Exception('Module "Lightbox" not found.');
 
 		return $result;
 	}
