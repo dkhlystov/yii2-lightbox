@@ -19,7 +19,7 @@ class TouchController extends Controller
 	/**
 	 * @var string Use custom layout.
 	 */
-	public $layout = '@dkhlystov/lightbox/views/layout';
+	public $layout = 'layout';
 
 	/**
 	 * Render lightbox for mobile
@@ -35,7 +35,7 @@ class TouchController extends Controller
 		//ckicked index
 		$touch = array_search($request->post('touch'), $src);
 
-		return $this->render('@dkhlystov/lightbox/views/lightbox', [
+		return $this->render('lightbox', [
 			'src' => $src,
 			'touch' => (integer) $touch,
 		]);
