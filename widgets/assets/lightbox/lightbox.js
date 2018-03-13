@@ -8,10 +8,10 @@ $(function() {
 		makeTitle($overlay, $el);
 
 		//events
-		$overlay.find('.close').click(hideSplash); //close
-		$overlay.find('.prev').click(prevClick);
-		$overlay.find('.next').click(nextClick);
-		$overlay.find('.buffer img').load(bufferLoad); //load image in buffer
+		$overlay.find('.close').on('click', hideSplash); //close
+		$overlay.find('.prev').on('click', prevClick);
+		$overlay.find('.next').on('click', nextClick);
+		$overlay.find('.buffer img').on('load', bufferLoad); //load image in buffer
 		$(window).bind('keydown', windowKeydown); //hot keys
 
 		//image block
